@@ -22,6 +22,3 @@ students = ', '.join(students)
 subjects = ['math', 'biology', 'geography']
 subjects = ', '.join(subjects)
 print('Students', students, 'study these subjects:', subjects)
-
-
-
