@@ -12,9 +12,3 @@ for num in range_num:
 
     else:
         print(num)
-
-
-
-
-
-
