@@ -4,17 +4,9 @@ name, last_name, city, phone, country = person
 print(name, last_name, city, phone, country)
 
 # lesson_2
-result_1 = 'результат операции: 42'
-one_num = int(result_1[19:])
-print(one_num + 10)
-
-result_2 = 'результат операции: 514'
-two_num = int(result_2[19:])
-print(two_num + 10)
-
-result_3 = 'результат работы программы: 9'
-three_num = int(result_3[27:])
-print(three_num + 10)
+result = 'результат операции: 514'
+num = result.split(':')
+print(int(num[1]) + 10)
 
 # lesson_3
 students = ['Ivanov', 'Petrov', 'Sidorov']
