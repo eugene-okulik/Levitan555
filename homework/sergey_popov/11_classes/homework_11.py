@@ -46,7 +46,6 @@ schoolbook_3 = SchoolBook(
     'Биология', 1, False
 )
 
-
 print(
     f'Название: {book_1.name_book}, Автор: {book_1.author},'
     f' Страниц: {book_1.count_page}, Материал: {Book.material}', end=""
@@ -88,4 +87,3 @@ print(
     f' Страниц: {schoolbook_3.count_page}, Предмет: {schoolbook_3.subject}, Класс: {schoolbook_2.class_number}', end=""
 )
 reserve_book(True)
-
