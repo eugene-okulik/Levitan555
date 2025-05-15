@@ -1,8 +1,6 @@
-
 class Book:
     material = 'Бумага'
     text = True
-
 
     def __init__(self, name_book, author, count_page, isbn):
         self.name_book = name_book
