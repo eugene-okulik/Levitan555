@@ -18,11 +18,28 @@ class SchoolBook(Book):
         self.lesson = lesson
 
 
-def reserve_book(reserve):
+def reserve_book(book_num, reserve):
+    print_book = (
+        f'Название: {book_num.name_book}, Автор: {book_num.author},'
+        f' Страниц: {book_num.count_page}, Материал: {book_num.material}'
+    )
     if reserve is True:
+        print(print_book, end="")
         print(', зарезервирована')
     else:
-        print('')
+        print(print_book)
+
+
+def reserve_schoolbook(schoolbook_num, reserve):
+    print_schoolbook = (
+        f'Название: {schoolbook_num.name_book}, Автор: {schoolbook_num.author},'
+        f' Страниц: {schoolbook_num.count_page}, Предмет: {schoolbook_num.subject}, Класс: {schoolbook_num.class_number}'
+    )
+    if reserve is True:
+        print(print_schoolbook, end="")
+        print(', зарезервирована')
+    else:
+        print(print_schoolbook)
 
 
 book_1 = Book('Идиот', 'Достоевский', 500, '2-266-11156-6')
@@ -44,44 +61,12 @@ schoolbook_3 = SchoolBook(
     'Биология', 1, False
 )
 
-print(
-    f'Название: {book_1.name_book}, Автор: {book_1.author},'
-    f' Страниц: {book_1.count_page}, Материал: {Book.material}', end=""
-)
-reserve_book(False)
-print(
-    f'Название: {book_2.name_book}, Автор: {book_2.author},'
-    f' Страниц: {book_2.count_page}, Материал: {Book.material}', end=""
-)
-reserve_book(True)
-print(
-    f'Название: {book_3.name_book}, Автор: {book_3.author},'
-    f' Страниц: {book_3.count_page}, Материал: {Book.material}', end=""
-)
-reserve_book(False)
-print(
-    f'Название: {book_4.name_book}, Автор: {book_4.author},'
-    f' Страниц: {book_4.count_page}, Материал: {Book.material}', end=""
-)
-reserve_book(False)
-print(
-    f'Название: {book_5.name_book}, Автор: {book_5.author},'
-    f' Страниц: {book_5.count_page}, Материал: {Book.material}', end=""
-)
-reserve_book(False)
-print()
-print(
-    f'Название: {schoolbook_1.name_book}, Автор: {schoolbook_1.author},'
-    f' Страниц: {schoolbook_1.count_page}, Предмет: {schoolbook_1.subject}, Класс: {schoolbook_1.class_number}', end=""
-)
-reserve_book(False)
-print(
-    f'Название: {schoolbook_2.name_book}, Автор: {schoolbook_2.author},'
-    f' Страниц: {schoolbook_2.count_page}, Предмет: {schoolbook_2.subject}, Класс: {schoolbook_2.class_number}', end=""
-)
-reserve_book(False)
-print(
-    f'Название: {schoolbook_3.name_book}, Автор: {schoolbook_3.author},'
-    f' Страниц: {schoolbook_3.count_page}, Предмет: {schoolbook_3.subject}, Класс: {schoolbook_2.class_number}', end=""
-)
-reserve_book(True)
+reserve_book(book_1, False)
+reserve_book(book_2, True)
+reserve_book(book_3, False)
+reserve_book(book_4, False)
+reserve_book(book_5, False)
+
+reserve_schoolbook(schoolbook_1, False)
+reserve_schoolbook(schoolbook_2, True)
+reserve_schoolbook(schoolbook_3, False)
