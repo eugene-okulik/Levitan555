@@ -33,7 +33,8 @@ def reserve_book(book_num, reserve):
 def reserve_schoolbook(schoolbook_num, reserve):
     print_schoolbook = (
         f'Название: {schoolbook_num.name_book}, Автор: {schoolbook_num.author},'
-        f' Страниц: {schoolbook_num.count_page}, Предмет: {schoolbook_num.subject}, Класс: {schoolbook_num.class_number}'
+        f' Страниц: {schoolbook_num.count_page}, Предмет: {schoolbook_num.subject}, '
+        f'Класс: {schoolbook_num.class_number}'
     )
     if reserve is True:
         print(print_schoolbook, end="")
