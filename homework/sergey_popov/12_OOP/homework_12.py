@@ -9,31 +9,40 @@ class Flowers:
         self.length_stebel = length_stebel
         self.coast = coast
 
+    def __str__(self):
+        return f'flower - {self.name}'
+
+    def __repr__(self):
+        return f'flower - {self.name}'
+
 
 class FlowersYellow(Flowers):
+    color = 'yellow'
 
-    def __init__(self, name, time_life, color, length_stebel, coast):
-        super().__init__(name, time_life, color, length_stebel, coast)
+    def __init__(self, name, time_life, length_stebel, coast):
+        super().__init__(name, time_life, self.color, length_stebel, coast)
 
 
 class FlowersOrange(Flowers):
+    color = 'orange'
 
-    def __init__(self, name, time_life, color, length_stebel, coast):
-        super().__init__(name, time_life, color, length_stebel, coast)
+    def __init__(self, name, time_life, length_stebel, coast):
+        super().__init__(name, time_life, self.color, length_stebel, coast)
 
 
 class FlowersGreen(Flowers):
+    color = 'green'
 
-    def __init__(self, name, time_life, color, length_stebel, coast):
-        super().__init__(name, time_life, color, length_stebel, coast)
+    def __init__(self, name, time_life, length_stebel, coast):
+        super().__init__(name, time_life, self.color, length_stebel, coast)
 
 
-flower_1 = FlowersYellow('Подсолнух', 22, 'yellow', 60, 300)
-flower_2 = FlowersYellow('Нарцисс', 14, 'yellow', 20, 500)
-flower_3 = FlowersOrange('Георгин', 10, 'orange', 25, 700)
-flower_4 = FlowersOrange('Герань', 40, 'orange', 10, 350)
-flower_5 = FlowersGreen('Гвоздика', 25, 'green', 27, 150)
-flower_6 = FlowersGreen('Гортензия', 14, 'green', 30, 250)
+flower_1 = FlowersYellow('Подсолнух', 22, 60, 300)
+flower_2 = FlowersYellow('Нарцисс', 14, 20, 500)
+flower_3 = FlowersOrange('Георгин', 10, 25, 700)
+flower_4 = FlowersOrange('Герань', 40, 10, 350)
+flower_5 = FlowersGreen('Гвоздика', 25, 27, 150)
+flower_6 = FlowersGreen('Гортензия', 14, 30, 250)
 
 
 class Bouquet:
@@ -55,11 +64,12 @@ class Bouquet:
     def search_flower(self, attr, value):
         for flower in self.bouquet_list:
             if getattr(flower, attr) == value:
-                print(f'{flower.name} - {getattr(flower, attr, value)}')
+                return flower
+        return None
 
 
 new_bouquet = Bouquet(flower_1, flower_2, flower_3, flower_4, flower_5, flower_6)
 new_bouquet.bouquet_coast()
 new_bouquet.time_death()
 new_bouquet.sort_flower('coast')
-new_bouquet.search_flower('color', 'green')
+print(new_bouquet.search_flower('time_life', 40))
