@@ -23,4 +23,3 @@ for data_line in read_file():
         print(data_time.isoweekday())
     elif data_line.startswith('3'):
         print(datetime.datetime.now() - data_time)
-
