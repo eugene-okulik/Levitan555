@@ -1,4 +1,4 @@
-1. INSERT INTO students(name, second_name, group_id) VALUE('Сергей', 'Popov', 1)
+1. INSERT INTO students(name, second_name) VALUE('Сергей', 'Popov')
 
 2. INSERT INTO books(title, taken_by_student_id)
 VALUE
