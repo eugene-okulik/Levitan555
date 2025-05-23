@@ -1,0 +1,50 @@
+1. INSERT INTO students(name, second_name) VALUE('Сергей', 'Popov')
+
+2. INSERT INTO books(title, taken_by_student_id)
+VALUE
+    ('White Book', 20426),
+    ('Black Book', 20426),
+    ('Green Book', 20426),
+    ('Red Book', 20426)
+
+    SELECT id FROM students WHERE name = 'Сергей' AND second_name = 'Popov'
+
+3. INSERT INTO `groups`(title, start_date, end_date) VALUES('Первая', '12-2024', '12-2025')
+
+    UPDATE students SET group_id = 5143 WHERE id = 20426
+
+4. INSERT INTO subjets(title) VALUES('Математика'), ('Биология'), ('Физика'), ('История')
+
+5. INSERT INTO lessons(title, subject_id)
+VALUES
+	('lesson_1', 10464), ('lesson_2', 10464), ('lesson_3', 10465), ('lesson_4', 10465),
+	('lesson_5', 10466), ('lesson_6', 10466), ('lesson_7', 10467), ('lesson_8', 10467)
+
+    SELECT id FROM subjets WHERE title = 'Математика' OR title = 'Биология' OR title = 'Физика' OR title = 'История'
+
+6. INSERT INTO marks(value, lesson_id, student_id)
+VALUES
+	(3, 10031, 20426), (4, 10031, 20426), (4, 10033, 20426), (5, 10033, 20426),
+	(2, 10035, 20426), (3, 10035, 20426), (4, 10037, 20426), (1, 10037, 20426)
+
+    SELECT * FROM lessons WHERE title = 'lesson_1' OR title = 'lesson_3' OR title = 'lesson_5' OR title = 'lesson_7'
+
+1. Все оценки студента
+SELECT value FROM marks WHERE student_id = 20426
+
+2. Все книги, которые находятся у студента
+SELECT title FROM books WHERE taken_by_student_id = 20426
+
+3. Для вашего студента выведите всё
+SELECT * FROM students s
+JOIN marks m ON
+m.student_id = s.id
+JOIN `groups` g ON
+s.group_id = g.id
+JOIN books b ON
+b.taken_by_student_id = s.id
+JOIN lessons l ON
+m.lesson_id = l.id
+JOIN subjets sub ON
+l.subject_id = sub.id
+WHERE s.id = 20426
