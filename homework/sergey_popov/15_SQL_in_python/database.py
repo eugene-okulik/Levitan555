@@ -15,12 +15,12 @@ cursor.execute(insert_student, ('Сергей', 'Popov'))
 id_student = cursor.lastrowid
 print(id_student)
 
-insert_books = f'''INSERT INTO books(title, taken_by_student_id)
+insert_books = f'''"INSERT INTO books(title, taken_by_student_id)
 VALUES
     (%s, %s),
     (%s, %s),
     (%s, %s),
-    (%s, %s)'''
+    (%s, %s)"'''
 books = ('White Book', id_student, 'Black Book', id_student, 'Green Book', id_student, 'Red Book', id_student)
 cursor.execute(insert_books, books)
 
@@ -32,10 +32,10 @@ insert_group = "INSERT INTO `groups`(title, start_date, end_date) VALUES(%s, %s,
 cursor.execute(insert_group, ('Первая', '12-2024', '12-2025'))
 id_group = cursor.lastrowid
 
-student_in_group = f"UPDATE students SET group_id = %s WHERE id = %s"
+student_in_group = f'UPDATE students SET group_id = %s WHERE id = %s'
 cursor.execute(student_in_group, (id_group, id_student))
 
-insert_subjets = f"INSERT INTO subjets(title) VALUES(%s), (%s), (%s), (%s)"
+insert_subjets = f'INSERT INTO subjets(title) VALUES(%s), (%s), (%s), (%s)'
 subjets = ('Математика', 'Биология', 'Физика', 'История')
 cursor.execute(insert_subjets, subjets)
 
@@ -43,8 +43,8 @@ cursor.execute('SELECT id FROM subjets ORDER BY id DESC LIMIT 4')
 id_subjets = cursor.fetchall()
 print(id_subjets)
 
-insert_lessons = f'''INSERT INTO lessons(title, subject_id)
-VALUES(%s, %s)'''
+insert_lessons = f'''"INSERT INTO lessons(title, subject_id)
+VALUES(%s, %s)"'''
 
 lessons = [
     ('lesson_1', id_subjets[3]['id']), ('lesson_2', id_subjets[3]['id']),
@@ -84,7 +84,7 @@ cursor.execute(f"SELECT title FROM books WHERE taken_by_student_id = {student_id
 print(cursor.fetchall())
 
 # 3. Для вашего студента выведите всё
-select_all = f'''SELECT * FROM students s
+select_all = f'''"SELECT * FROM students s
 JOIN marks m ON
 m.student_id = s.id
 JOIN `groups` g ON
@@ -95,7 +95,7 @@ JOIN lessons l ON
 m.lesson_id = l.id
 JOIN subjets sub ON
 l.subject_id = sub.id
-WHERE s.id = %s'''
+WHERE s.id = %s"'''
 cursor.execute(select_all, tuple({student_id_marks['student_id']}))
 print(cursor.fetchall())
 db.commit()
