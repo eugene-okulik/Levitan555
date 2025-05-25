@@ -80,7 +80,7 @@ cursor.execute(f"SELECT value FROM marks WHERE student_id = {student_id_marks['s
 print(cursor.fetchall())
 
 # 2. Все книги, которые находятся у студента
-cursor.execute(f'SELECT title FROM books WHERE taken_by_student_id = {student_id_marks['student_id']}')
+cursor.execute(f"SELECT title FROM books WHERE taken_by_student_id = {student_id_marks['student_id']}")
 print(cursor.fetchall())
 
 # 3. Для вашего студента выведите всё
