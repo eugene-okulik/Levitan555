@@ -24,7 +24,7 @@ VALUES
 books = ('White Book', id_student, 'Black Book', id_student, 'Green Book', id_student, 'Red Book', id_student)
 cursor.execute(insert_books, books)
 
-cursor.execute(f'SELECT id FROM books WHERE taken_by_student_id = %s', (id_student,))
+cursor.execute('SELECT id FROM books WHERE taken_by_student_id = %s', (id_student,))
 id_books = [row['id'] for row in cursor.fetchall()]
 print(id_books)
 
@@ -61,7 +61,6 @@ for title in lessons:
     id_lessons.append(cursor.lastrowid)
 print(id_lessons)
 
-
 insert_marks = '''INSERT INTO marks(value, lesson_id, student_id)
 VALUES (%s, %s, %s)'''
 
@@ -86,11 +85,11 @@ student_id_marks = cursor.fetchone()
 print(student_id_marks['student_id'])
 
 # 1. Все оценки студента
-cursor.execute(f"SELECT value FROM marks WHERE student_id = %s", (id_student,))
+cursor.execute("SELECT value FROM marks WHERE student_id = %s", (id_student,))
 print(cursor.fetchall())
 
 # 2. Все книги, которые находятся у студента
-cursor.execute(f"SELECT title FROM books WHERE taken_by_student_id = %s", (id_student,))
+cursor.execute("SELECT title FROM books WHERE taken_by_student_id = %s", (id_student,))
 print(cursor.fetchall())
 #
 # 3. Для вашего студента выведите всё
@@ -109,6 +108,5 @@ WHERE s.id = %s'''
 cursor.execute(select_all, (id_student,))
 print(cursor.fetchall())
 db.commit()
-
 
 db.close()
