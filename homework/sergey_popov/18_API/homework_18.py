@@ -13,7 +13,7 @@ def get_one():
     post_id = 1
     response = requests.get(f'http://167.172.172.115:52353/object/{post_id}')
     assert response.status_code == 200
-    assert response.json()['id'] == post_id, 'ID is incorrect'
+    assert response.json()['id'] == post_id, 'ID is incorrectly'
 
 
 get_one()
