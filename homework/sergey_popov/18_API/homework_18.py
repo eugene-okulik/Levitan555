@@ -13,7 +13,7 @@ def get_one():
     post_id = 1
     response = requests.get(f'http://167.172.172.115:52353/object/{post_id}')
     assert response.status_code == 200
-    assert response.json()['id'] == post_id, 'ID is incorrectly'
+    assert response.json()['id'] == post_id, 'ID is incorrect'
 
 
 get_one()
@@ -49,7 +49,7 @@ def post_obj_test():
 
 
 def clear(post_id):
-    response = requests.delete(f'http://167.172.172.115:52353/object/{post_id}')
+    requests.delete(f'http://167.172.172.115:52353/object/{post_id}')
 
 
 def put_obj():
@@ -88,7 +88,7 @@ patch_obj()
 
 def del_post():
     post_id = post_obj_test()
-    response = requests.delete(f'http://167.172.172.115:52353/object/{post_id}')
+    requests.delete(f'http://167.172.172.115:52353/object/{post_id}')
 
 
 del_post()
