@@ -19,10 +19,9 @@ def read_dir():
                     words = line.split()
                     if args.text in words:
                         idx = words.index(args.text)
-                        words_before = words[max(0, idx-5):idx]
-                        words_after = words[idx+1:idx+6]
+                        words_before = words[max(0, idx - 5):idx]
+                        words_after = words[idx + 1:idx + 6]
                         print(' '.join(words_before + [words[idx]] + words_after))
-
 
     return file_read
 
