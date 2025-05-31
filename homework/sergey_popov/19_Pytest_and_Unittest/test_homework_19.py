@@ -21,17 +21,20 @@ def new_post_id():
     yield post_id
     requests.delete(f'http://167.172.172.115:52353/object/{post_id}')
 
+
 @pytest.fixture(scope='session')
 def start_test_ses():
     yield print('Start testing')
     print()
     print('Testing completed')
 
+
 @pytest.fixture()
 def start_test_fun():
     yield print('before test')
     print()
     print('after test')
+
 
 def test_get_all(start_test_ses, start_test_fun):
     response = requests.get('http://167.172.172.115:52353/object')
@@ -57,6 +60,7 @@ def test_post_obj(objects, start_test_fun):
     )
     assert response.status_code == 200, 'Status code is incorrect'
 
+
 @pytest.mark.critical
 def test_put_obj(new_post_id, start_test_fun):
     body = {
@@ -69,6 +73,7 @@ def test_put_obj(new_post_id, start_test_fun):
         headers=headers
     )
     assert response.json()['name'] == 'Third object', 'Object is not UPD'
+
 
 @pytest.mark.medium
 def test_patch_obj(new_post_id, start_test_fun):
