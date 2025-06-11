@@ -1,5 +1,4 @@
 import allure
-import requests
 import pytest
 
 obj_list = [
@@ -8,90 +7,39 @@ obj_list = [
     {'data': {'color': 'red', 'size': 'big'}, 'name': 'Third object'}
 ]
 
-
-@allure.feature('Get request')
-@allure.story('Provides information about all objects')
-@allure.title('Запрос информации обо всех объектах')
-def test_get_all(start_test_ses, start_test_fun):
-    with allure.step('object information'):
-        response = requests.get('http://167.172.172.115:52353/object')
-    with allure.step('Check that status code is 200'):
-        assert response.status_code == 200, 'Status code is incorrect'
+change_object = {'data': {'color': 'red', 'size': 'big'}, 'name': 'Four object'}
 
 
-@allure.feature('Get request')
-@allure.story('Provides information about one object')
-@allure.title('Запрос информации об одном объекте')
-def test_get_one(new_post_id, start_test_fun):
-    with allure.step(f'Provides information about objects with id {new_post_id}'):
-        response = requests.get(f'http://167.172.172.115:52353/object/{new_post_id}')
-    with allure.step('Check that status code is 200'):
-        assert response.status_code == 200
-    with allure.step(f'Check that post id is {new_post_id}'):
-        assert response.json()['id'] == new_post_id, 'ID is incorrect'
+def test_get_all(start_test_ses, start_test_fun, get_all_obj):
+    get_all_obj.get_obj_all()
+    get_all_obj.check_status_code()
 
 
-@allure.feature('Post request')
-@allure.story('Create object')
-@allure.title('Создание объекта')
+def test_get_one(new_post_id, start_test_fun, get_one_obj):
+    get_one_obj.get_obj_one(new_post_id)
+    get_one_obj.check_status_code()
+    get_one_obj.check_obj_id(new_post_id)
+
+
 @pytest.mark.parametrize('objects', obj_list)
-def test_post_obj(objects, start_test_fun):
-    with allure.step('Prepare test data'):
-        body = {
-            'data': {'color': 'white', 'size': 'big'}, 'name': 'First object'
-        }
-        headers = {'Content-Type': 'application/json'}
-    with allure.step('Run post request'):
-        response = requests.post(
-            'http://167.172.172.115:52353/object',
-            json=body,
-            headers=headers
-        )
-    with allure.step('Check that status code is 200'):
-        assert response.status_code == 200, 'Status code is incorrect'
+def test_post_obj(objects, start_test_fun, return_post_endpoint):
+    return_post_endpoint.new_obj(body=objects)
+    return_post_endpoint.check_status_code()
 
 
-@allure.feature('Put request')
-@allure.story('Update object full')
-@allure.title('Изменение всего объекта')
 @pytest.mark.critical
-def test_put_obj(new_post_id, start_test_fun):
-    with allure.step('Prepare test data'):
-        body = {
-            'data': {'color': 'white', 'size': 'big'}, 'name': 'Third object'
-        }
-        headers = {'Content-Type': 'application/json'}
-    with allure.step('Run put request'):
-        response = requests.put(
-            f'http://167.172.172.115:52353/object/{new_post_id}',
-            json=body,
-            headers=headers
-        )
-    with allure.step('Check name object is Third object'):
-        assert response.json()['name'] == 'Third object', 'Object is not UPD'
+def test_put_obj(new_post_id, start_test_fun, return_put_endpoint):
+    return_put_endpoint.change_obj(change_object, new_post_id)
+    return_put_endpoint.check_obj_name(change_object['name'])
 
 
-@allure.feature('Patch request')
-@allure.story('update object part')
-@allure.title('Изменение части объекта')
 @pytest.mark.medium
-def test_patch_obj(new_post_id, start_test_fun):
+def test_patch_obj(new_post_id, start_test_fun, return_patch_endpoint):
     with allure.step('Prepare test data'):
         body = {'name': 'Four object'}
-        headers = {'Content-Type': 'application/json'}
-    with allure.step('Run patch request'):
-        response = requests.patch(
-            f'http://167.172.172.115:52353/object/{new_post_id}',
-            json=body,
-            headers=headers
-        )
-    with allure.step('Check name object is Four object'):
-        assert response.json()['name'] == 'Four object', 'Object is not UPD'
+    return_patch_endpoint.change_part_obj(body, new_post_id)
+    return_patch_endpoint.check_obj_name(body['name'])
 
 
-@allure.feature('Delete request')
-@allure.story('Delete object')
-@allure.title('Удаление объекта')
-def test_del_post(new_post_id, start_test_fun):
-    with allure.step(f'Delete object {new_post_id}'):
-        requests.delete(f'http://167.172.172.115:52353/object/{new_post_id}')
+def test_del_post(new_post_id, start_test_fun, return_del_obj):
+    return_del_obj.del_obj(new_post_id)
