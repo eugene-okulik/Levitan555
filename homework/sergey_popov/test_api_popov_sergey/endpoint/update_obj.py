@@ -3,8 +3,8 @@ import allure
 
 from .base_endpoint import Endpoint
 
-class UpdateObj(Endpoint):
 
+class UpdateObj(Endpoint):
 
     @allure.feature('Put request')
     @allure.story('Update object full')
