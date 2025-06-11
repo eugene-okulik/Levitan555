@@ -5,6 +5,7 @@ from .base_endpoint import Endpoint
 
 class UpdateObj(Endpoint):
 
+
     @allure.feature('Put request')
     @allure.story('Update object full')
     @allure.title('Изменение всего объекта')
