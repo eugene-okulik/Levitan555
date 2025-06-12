@@ -10,10 +10,10 @@ class UpdateObj(Endpoint):
     @allure.story('Update object full')
     @allure.title('Изменение всего объекта')
     @allure.step('Update object full')
-    def change_obj(self, body, new_post_id, headers=None):
+    def change_obj(self, body, new_obj_id, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.put(
-            f'{self.url}/{new_post_id}',
+            f'{self.url}/{new_obj_id}',
             json=body,
             headers=headers
         )
@@ -24,10 +24,10 @@ class UpdateObj(Endpoint):
     @allure.story('update object part')
     @allure.title('Изменение части объекта')
     @allure.step('Run patch request')
-    def change_part_obj(self, body, new_post_id, headers=None):
+    def change_part_obj(self, body, new_obj_id, headers=None):
         headers = headers if headers else self.headers
         self.response = requests.patch(
-            f'{self.url}/{new_post_id}',
+            f'{self.url}/{new_obj_id}',
             json=body,
             headers=headers
         )

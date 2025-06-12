@@ -16,12 +16,7 @@ class GetObj(Endpoint):
     @allure.feature('Get request')
     @allure.story('Provides information about one object')
     @allure.title('Запрос информации об одном объекте')
-    def get_obj_one(self, new_post_id):
-        with allure.step(f'Provides information about objects with id {new_post_id}'):
-            self.response = requests.get(f'{self.url}/{new_post_id}')
+    def get_obj_one(self, new_obj_id):
+        with allure.step(f'Provides information about objects with id {new_obj_id}'):
+            self.response = requests.get(f'{self.url}/{new_obj_id}')
             return self.response
-
-    def check_obj_id(self, new_post_id):
-        self.json = self.response.json()
-        with allure.step(f'Check name object is {new_post_id}'):
-            assert self.json['id'] == new_post_id, 'ID is incorrect'

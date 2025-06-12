@@ -52,7 +52,7 @@ def return_del_obj():
 
 
 @pytest.fixture
-def new_post_id():
+def new_obj_id():
     body = {'data': {'color': 'white', 'size': 'big'}, 'name': 'First object'}
     headers = {'Content-Type': 'application/json'}
     response = requests.post(
@@ -60,6 +60,6 @@ def new_post_id():
         json=body,
         headers=headers
     )
-    post_id = response.json()['id']
-    yield post_id
-    requests.delete(f'http://167.172.172.115:52353/object/{post_id}')
+    obj_id = response.json()['id']
+    yield obj_id
+    requests.delete(f'http://167.172.172.115:52353/object/{obj_id}')
