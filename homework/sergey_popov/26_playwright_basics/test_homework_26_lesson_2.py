@@ -1,0 +1,25 @@
+from playwright.sync_api import Page
+
+
+def test_practice_form(page: Page):
+    page.goto('https://demoqa.com/automation-practice-form')
+    page.locator('[placeholder="First Name"]').fill('Sergey')
+    page.locator('[placeholder="Last Name"]').fill('Popov')
+    page.locator('[id="userEmail"]').fill('popov@gmail.com')
+    page.locator('[for="gender-radio-1"]').click()
+    page.locator('[id="userNumber"]').fill('78866767651')
+    page.locator('[id="dateOfBirthInput"]').click()
+    page.locator('[class="react-datepicker__month-select"]').click()
+    page.select_option('[class="react-datepicker__month-select"]', value='3')
+    page.locator('[class="react-datepicker__year-select"]').click()
+    page.select_option('[class="react-datepicker__year-select"]', value='1987')
+    page.locator('.react-datepicker__day--016').click()
+    page.locator('[id="subjectsInput"]').fill('History')
+    page.locator('//div[contains(@class, "subjects-auto-complete") and text()="History"]').click()
+    page.locator('[for="hobbies-checkbox-3"]').click()
+    page.locator('[id="currentAddress"]').fill('Ekaterinburg, 23-34')
+    page.locator('[id="react-select-3-input"]').fill('N')
+    page.locator('//div[@id="state"]//div[text()="NCR"]').click()
+    page.locator('[id="react-select-4-input"]').fill('D')
+    page.locator('//div[@id="city"]//div[text()="Delhi"]').click()
+    page.locator('[id="submit"]').click()
